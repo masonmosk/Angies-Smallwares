@@ -1,0 +1,2122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Angie's - Small Wares & Supplies Ordering</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #E8432A;
+  --red-dark: #d63220;
+  --red-light: rgba(232,67,42,0.08);
+  --red-border: rgba(232,67,42,0.2);
+  --navy: #1B2A4A;
+  --navy-light: #2d3f5a;
+  --navy-lighter: #3a4f6e;
+  --white: #ffffff;
+  --gray-50: #f8f9fa;
+  --gray-100: #f1f3f5;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #ced4da;
+  --gray-500: #adb5bd;
+  --gray-600: #868e96;
+  --gray-700: #495057;
+  --gray-800: #343a40;
+  --gray-900: #212529;
+  --green: #2ecc71;
+  --green-bg: rgba(46,204,113,0.1);
+  --yellow: #f39c12;
+  --yellow-bg: rgba(243,156,18,0.1);
+  --blue: #3498db;
+  --blue-bg: rgba(52,152,219,0.1);
+  --radius: 8px;
+  --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--gray-50);
+  color: var(--gray-900);
+  min-height: 100vh;
+}
+
+/* ── LOGIN ── */
+.login-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  padding: 20px;
+}
+
+.login-card {
+  background: var(--white);
+  padding: 48px 40px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  max-width: 420px;
+}
+
+.login-logo {
+  font-family: 'Great Vibes', cursive;
+  font-size: 52px;
+  color: var(--red);
+  text-align: center;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.login-subtitle {
+  text-align: center;
+  color: var(--gray-600);
+  font-size: 14px;
+  margin-bottom: 32px;
+}
+
+.form-group { margin-bottom: 20px; }
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: 6px;
+}
+
+.form-group select,
+.form-group input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--gray-300);
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: var(--white);
+}
+
+.form-group select:focus,
+.form-group input:focus {
+  outline: none;
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(232,67,42,0.1);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: var(--red);
+  color: var(--white);
+  width: 100%;
+}
+
+.btn-primary:hover { background: var(--red-dark); }
+
+.btn-secondary {
+  background: var(--gray-100);
+  color: var(--gray-700);
+  border: 1.5px solid var(--gray-300);
+}
+
+.btn-secondary:hover { background: var(--gray-200); }
+
+.btn-navy {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.btn-navy:hover { background: var(--navy-light); }
+
+.btn-sm { padding: 8px 16px; font-size: 13px; }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--gray-600);
+  padding: 8px 12px;
+}
+
+.btn-ghost:hover { background: var(--gray-100); color: var(--gray-800); }
+
+.admin-link {
+  display: block;
+  text-align: center;
+  margin-top: 16px;
+  color: var(--gray-500);
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.admin-link:hover { color: var(--red); }
+
+/* ── ORDER WINDOW BANNER ── */
+.window-banner {
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.window-open { background: var(--green-bg); color: #27ae60; }
+.window-closed { background: var(--yellow-bg); color: #e67e22; }
+
+/* ── APP LAYOUT ── */
+.app { display: none; min-height: 100vh; flex-direction: column; }
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: var(--navy);
+  color: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.top-bar-logo {
+  font-family: 'Great Vibes', cursive;
+  font-size: 28px;
+  color: var(--red);
+}
+
+.top-bar-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255,255,255,0.2);
+}
+
+.top-bar-title {
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.store-badge {
+  background: rgba(255,255,255,0.1);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.cart-badge {
+  position: relative;
+  background: var(--red);
+  color: var(--white);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 18px;
+  transition: transform 0.2s;
+}
+
+.cart-badge:hover { transform: scale(1.1); }
+
+.cart-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--navy);
+  color: var(--white);
+  font-size: 11px;
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--white);
+}
+
+.logout-btn {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: var(--white);
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+
+.logout-btn:hover { background: rgba(255,255,255,0.2); }
+
+/* ── CATEGORY TABS ── */
+.category-bar {
+  display: flex;
+  gap: 6px;
+  padding: 16px 24px;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  overflow-x: auto;
+  position: sticky;
+  top: 56px;
+  z-index: 90;
+}
+
+.category-tab {
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  border: 1.5px solid var(--gray-300);
+  background: var(--white);
+  color: var(--gray-700);
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.category-tab:hover { border-color: var(--red); color: var(--red); }
+
+.category-tab.active {
+  background: var(--red);
+  color: var(--white);
+  border-color: var(--red);
+}
+
+/* ── ITEM GRID ── */
+.order-content { padding: 24px; padding-bottom: 140px; }
+
+.category-section { margin-bottom: 32px; }
+
+.category-header {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--red-border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.category-icon { font-size: 22px; }
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.item-card {
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.item-card:hover { border-color: var(--gray-400); }
+
+.item-card.has-qty {
+  border-color: var(--red);
+  background: var(--red-light);
+  box-shadow: 0 0 0 1px var(--red-border);
+}
+
+.item-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-800);
+  line-height: 1.3;
+}
+
+.item-unit {
+  font-size: 12px;
+  color: var(--gray-500);
+}
+
+.qty-control {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-top: auto;
+}
+
+.qty-btn {
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--gray-300);
+  background: var(--white);
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-700);
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.qty-btn:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+.qty-btn:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+.qty-btn:hover { background: var(--gray-100); }
+.qty-btn:active { background: var(--gray-200); }
+
+.qty-input {
+  width: 52px;
+  height: 36px;
+  border: 1.5px solid var(--gray-300);
+  border-left: none;
+  border-right: none;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--gray-800);
+}
+
+.qty-input:focus { outline: none; background: var(--red-light); }
+
+/* ── SPECIAL REQUESTS ── */
+.special-requests {
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-top: 32px;
+}
+
+.special-requests h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.special-requests textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 12px;
+  border: 1.5px solid var(--gray-300);
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.special-requests textarea:focus {
+  outline: none;
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(232,67,42,0.1);
+}
+
+/* ── STICKY FOOTER ── */
+.order-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  border-top: 1px solid var(--gray-200);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.06);
+  z-index: 100;
+}
+
+.footer-summary {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-count {
+  font-size: 14px;
+  color: var(--gray-600);
+}
+
+.footer-count strong { color: var(--red); }
+
+.footer-actions { display: flex; gap: 10px; }
+
+/* ── REVIEW MODAL ── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 200;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  overflow-y: auto;
+}
+
+.modal-overlay.show { display: flex; }
+
+.modal {
+  background: var(--white);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 640px;
+  box-shadow: var(--shadow-lg);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.modal-header h2 {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.modal-close {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: var(--gray-100);
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-600);
+}
+
+.modal-close:hover { background: var(--gray-200); }
+
+.modal-body { padding: 24px; }
+
+.review-category {
+  margin-bottom: 20px;
+}
+
+.review-category-name {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--gray-500);
+  margin-bottom: 8px;
+}
+
+.review-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--gray-100);
+}
+
+.review-item:last-child { border-bottom: none; }
+
+.review-item-name { font-size: 14px; color: var(--gray-800); }
+
+.review-item-qty {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--red);
+  min-width: 40px;
+  text-align: right;
+}
+
+.review-special {
+  background: var(--gray-50);
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  margin-top: 16px;
+}
+
+.review-special h4 {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: 6px;
+}
+
+.review-special p {
+  font-size: 14px;
+  color: var(--gray-700);
+  white-space: pre-wrap;
+}
+
+.modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* ── ADMIN DASHBOARD ── */
+.admin-app { display: none; min-height: 100vh; flex-direction: column; }
+
+.admin-tabs {
+  display: flex;
+  gap: 0;
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 0 24px;
+}
+
+.admin-tab {
+  padding: 14px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-500);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  font-family: inherit;
+}
+
+.admin-tab:hover { color: var(--gray-700); }
+
+.admin-tab.active {
+  color: var(--red);
+  border-bottom-color: var(--red);
+}
+
+.admin-content { padding: 24px; }
+
+.admin-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.admin-filters select,
+.admin-filters input {
+  padding: 8px 14px;
+  border: 1.5px solid var(--gray-300);
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-family: inherit;
+  background: var(--white);
+}
+
+.admin-filters select:focus,
+.admin-filters input:focus {
+  outline: none;
+  border-color: var(--red);
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.orders-table th {
+  background: var(--navy);
+  color: var(--white);
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.orders-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 13px;
+}
+
+.orders-table tr:hover td { background: var(--gray-50); }
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-pending { background: var(--yellow-bg); color: #e67e22; }
+.status-fulfilled { background: var(--green-bg); color: #27ae60; }
+.status-cancelled { background: var(--gray-100); color: var(--gray-500); }
+
+.order-detail-row { display: none; }
+.order-detail-row.show { display: table-row; }
+
+.order-detail-cell {
+  padding: 16px 20px !important;
+  background: var(--gray-50) !important;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 10px;
+  background: var(--white);
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.detail-item-name { color: var(--gray-700); }
+.detail-item-qty { font-weight: 700; color: var(--red); }
+
+/* ── WEEKLY SUMMARY ── */
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.summary-table th {
+  background: var(--navy);
+  color: var(--white);
+  padding: 10px 16px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+}
+
+.summary-table td {
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--gray-100);
+  font-size: 13px;
+}
+
+.summary-table tr:hover td { background: var(--gray-50); }
+
+.summary-total { font-weight: 700; color: var(--red); }
+
+/* ── SETUP PANEL ── */
+.setup-panel {
+  max-width: 800px;
+}
+
+.setup-panel h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 24px 0 12px;
+}
+
+.setup-panel h3:first-child { margin-top: 0; }
+
+.setup-panel p, .setup-panel li {
+  font-size: 14px;
+  color: var(--gray-700);
+  line-height: 1.6;
+}
+
+.setup-panel ol, .setup-panel ul {
+  padding-left: 24px;
+  margin-bottom: 12px;
+}
+
+.setup-panel li { margin-bottom: 6px; }
+
+.setup-panel code {
+  background: var(--gray-100);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--red);
+}
+
+.setup-panel pre {
+  background: var(--gray-900);
+  color: #e0e0e0;
+  padding: 16px;
+  border-radius: var(--radius);
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 12px 0;
+}
+
+.config-field {
+  margin-bottom: 16px;
+}
+
+.config-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: 6px;
+}
+
+.config-field input {
+  width: 100%;
+  max-width: 500px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--gray-300);
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.config-field input:focus {
+  outline: none;
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(232,67,42,0.1);
+}
+
+/* ── TOAST ── */
+.toast {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--navy);
+  color: var(--white);
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  z-index: 300;
+  opacity: 0;
+  transition: all 0.3s;
+  pointer-events: none;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── SUCCESS SCREEN ── */
+.success-screen {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--green-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  margin-bottom: 24px;
+}
+
+.success-screen h2 {
+  font-size: 24px;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.success-screen p {
+  color: var(--gray-600);
+  font-size: 15px;
+  margin-bottom: 32px;
+  max-width: 400px;
+}
+
+/* ── EMPTY STATE ── */
+.empty-state {
+  text-align: center;
+  padding: 60px 24px;
+  color: var(--gray-500);
+}
+
+.empty-state-icon { font-size: 48px; margin-bottom: 16px; }
+.empty-state h3 { font-size: 18px; color: var(--gray-700); margin-bottom: 8px; }
+.empty-state p { font-size: 14px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .login-card { padding: 32px 24px; }
+  .login-logo { font-size: 40px; }
+  .top-bar { padding: 10px 16px; }
+  .top-bar-title { display: none; }
+  .category-bar { padding: 12px 16px; }
+  .order-content { padding: 16px; padding-bottom: 140px; }
+  .items-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
+  .item-card { padding: 12px; }
+  .order-footer { padding: 12px 16px; flex-direction: column; gap: 10px; }
+  .footer-actions { width: 100%; }
+  .footer-actions .btn { flex: 1; }
+  .admin-content { padding: 16px; }
+  .orders-table { font-size: 12px; }
+  .orders-table th, .orders-table td { padding: 8px 10px; }
+  .modal { margin: 20px; }
+}
+
+@media (max-width: 480px) {
+  .items-grid { grid-template-columns: 1fr 1fr; }
+  .store-badge { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── LOGIN SCREEN ── -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <div class="login-logo">Angie's</div>
+    <div class="login-subtitle">Small Wares & Supplies Ordering</div>
+    <div class="form-group">
+      <label>Select Your Store</label>
+      <select id="loginStore">
+        <option value="">-- Choose a store --</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Your Name</label>
+      <input type="text" id="loginName" placeholder="Enter your name">
+    </div>
+    <button class="btn btn-primary" onclick="loginAsStore()">Start Ordering</button>
+    <div class="admin-link" onclick="showAdminLogin()">Admin Login</div>
+  </div>
+</div>
+
+<!-- ── ADMIN LOGIN MODAL ── -->
+<div class="modal-overlay" id="adminLoginModal">
+  <div class="modal" style="max-width:400px">
+    <div class="modal-header">
+      <h2>Admin Login</h2>
+      <button class="modal-close" onclick="closeModal('adminLoginModal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Admin Password</label>
+        <input type="password" id="adminPass" placeholder="Enter admin password" onkeydown="if(event.key==='Enter')loginAsAdmin()">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary btn-sm" onclick="closeModal('adminLoginModal')">Cancel</button>
+      <button class="btn btn-primary btn-sm" onclick="loginAsAdmin()">Login</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── STORE ORDER APP ── -->
+<div class="app" id="storeApp">
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <div class="top-bar-logo">Angie's</div>
+      <div class="top-bar-divider"></div>
+      <div class="top-bar-title">Small Wares & Supplies</div>
+    </div>
+    <div class="top-bar-right">
+      <div class="store-badge" id="storeBadge"></div>
+      <div class="cart-badge" onclick="openReview()" title="Review Order">
+        &#128722;
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="window-banner" id="windowBanner"></div>
+
+  <div class="category-bar" id="categoryBar"></div>
+
+  <div class="order-content" id="orderContent"></div>
+
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">&#10003;</div>
+    <h2>Order Submitted!</h2>
+    <p id="successMsg">Your order has been submitted and will be reviewed by the operations team.</p>
+    <button class="btn btn-primary" onclick="startNewOrder()" style="width:auto">Place Another Order</button>
+  </div>
+
+  <div class="order-footer" id="orderFooter">
+    <div class="footer-summary">
+      <span class="footer-count"><strong id="footerItemCount">0</strong> items in order</span>
+    </div>
+    <div class="footer-actions">
+      <button class="btn btn-secondary btn-sm" onclick="clearOrder()">Clear All</button>
+      <button class="btn btn-primary btn-sm" onclick="openReview()">Review & Submit</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── REVIEW MODAL ── -->
+<div class="modal-overlay" id="reviewModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Review Your Order</h2>
+      <button class="modal-close" onclick="closeModal('reviewModal')">&times;</button>
+    </div>
+    <div class="modal-body" id="reviewBody"></div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary btn-sm" onclick="closeModal('reviewModal')">Back to Editing</button>
+      <button class="btn btn-primary btn-sm" id="submitOrderBtn" onclick="submitOrder()">Submit Order</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── ADMIN DASHBOARD ── -->
+<div class="admin-app" id="adminApp">
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <div class="top-bar-logo">Angie's</div>
+      <div class="top-bar-divider"></div>
+      <div class="top-bar-title">Admin Dashboard</div>
+    </div>
+    <div class="top-bar-right">
+      <div class="store-badge">Admin</div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="admin-tabs">
+    <button class="admin-tab active" onclick="switchAdminTab('orders',this)">Orders</button>
+    <button class="admin-tab" onclick="switchAdminTab('summary',this)">Weekly Summary</button>
+    <button class="admin-tab" onclick="switchAdminTab('catalog',this)">Manage Catalog</button>
+    <button class="admin-tab" onclick="switchAdminTab('setup',this)">Setup</button>
+  </div>
+
+  <div class="admin-content" id="adminContent"></div>
+</div>
+
+<!-- ── TOAST ── -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── STORE DATA ───
+const STORES = [
+  { key: 'Baseline', name: 'Baseline', num: 11101 },
+  { key: 'Signal', name: 'Signal Butte', num: 11103 },
+  { key: 'QC', name: 'Queen Creek', num: 11108 },
+  { key: 'Ray', name: 'Ray', num: 11126 },
+  { key: 'Pinnacle', name: 'Pinnacle Peak', num: 11104 },
+  { key: 'Central', name: 'Central & Camelback', num: 11125 },
+  { key: 'LoneCactus', name: 'Lone Cactus', num: 11122 },
+  { key: 'Tbird', name: 'Thunderbird', num: 11102 },
+  { key: 'Litchfield', name: 'Litchfield', num: 11106 },
+  { key: '83rd', name: '83rd Ave', num: 11105 },
+  { key: 'Peoria', name: 'Peoria', num: 11131 },
+  { key: 'Jackrabbit', name: 'Jackrabbit', num: 11112 },
+  { key: 'Wilmot1', name: 'Wilmot (Restaurant)', num: 11201 },
+  { key: 'Alvernon', name: 'Alvernon', num: 11205 },
+  { key: 'Wilmot2', name: 'Wilmot (Drive-Thru)', num: 11204 },
+  { key: 'Marketplace', name: 'Marketplace', num: 11206 },
+  { key: 'Copper', name: 'Copper', num: 11202 },
+  { key: 'Milton', name: 'Milton', num: 11301 },
+  { key: 'BlueDiamond', name: 'Blue Diamond', num: 12101 },
+  { key: 'Prescott', name: 'Prescott', num: 11302 },
+  { key: 'Alma', name: 'Alma School', num: 15101 },
+  { key: 'PowerRay', name: 'Power & Ray', num: 11134 }
+];
+
+// ─── CATALOG ───
+const DEFAULT_CATALOG = [
+  { category: 'Cups & Lids', icon: '&#9749;', items: [
+    { name: 'Small Hot Cups (8oz)', unit: 'Sleeve' },
+    { name: 'Medium Hot Cups (12oz)', unit: 'Sleeve' },
+    { name: 'Large Hot Cups (16oz)', unit: 'Sleeve' },
+    { name: 'Small Cold Cups (12oz)', unit: 'Sleeve' },
+    { name: 'Medium Cold Cups (16oz)', unit: 'Sleeve' },
+    { name: 'Large Cold Cups (24oz)', unit: 'Sleeve' },
+    { name: 'Small Hot Lids', unit: 'Sleeve' },
+    { name: 'Medium Hot Lids', unit: 'Sleeve' },
+    { name: 'Large Hot Lids', unit: 'Sleeve' },
+    { name: 'Cold Cup Lids (Flat)', unit: 'Sleeve' },
+    { name: 'Cold Cup Lids (Dome)', unit: 'Sleeve' },
+    { name: 'Soup Cups (12oz)', unit: 'Case' },
+    { name: 'Soup Cups (16oz)', unit: 'Case' },
+    { name: 'Soup Lids', unit: 'Case' }
+  ]},
+  { category: 'Utensils', icon: '&#127860;', items: [
+    { name: 'Forks', unit: 'Box' },
+    { name: 'Knives', unit: 'Box' },
+    { name: 'Spoons', unit: 'Box' },
+    { name: 'Soup Spoons', unit: 'Box' },
+    { name: 'Stirrers', unit: 'Box' },
+    { name: 'Straws', unit: 'Box' },
+    { name: 'Straw (Boba/Smoothie)', unit: 'Box' }
+  ]},
+  { category: 'Paper & Napkins', icon: '&#129531;', items: [
+    { name: 'Napkins (Dispenser)', unit: 'Case' },
+    { name: 'Napkins (Wrapped)', unit: 'Case' },
+    { name: 'Paper Towels', unit: 'Case' },
+    { name: 'Toilet Paper', unit: 'Case' },
+    { name: 'Receipt Paper (3-1/8")', unit: 'Case' },
+    { name: 'Parchment Paper Sheets', unit: 'Case' },
+    { name: 'Wax Paper Sheets', unit: 'Case' }
+  ]},
+  { category: 'Bags', icon: '&#128092;', items: [
+    { name: 'Small Paper Bags', unit: 'Bundle' },
+    { name: 'Medium Paper Bags', unit: 'Bundle' },
+    { name: 'Large Paper Bags', unit: 'Bundle' },
+    { name: 'Catering Bags', unit: 'Bundle' },
+    { name: 'Plastic Bags (Small)', unit: 'Bundle' },
+    { name: 'Plastic Bags (Large)', unit: 'Bundle' }
+  ]},
+  { category: 'Containers', icon: '&#128230;', items: [
+    { name: 'Small To-Go Containers', unit: 'Case' },
+    { name: 'Medium To-Go Containers', unit: 'Case' },
+    { name: 'Large To-Go Containers', unit: 'Case' },
+    { name: 'Sauce Cups (2oz)', unit: 'Sleeve' },
+    { name: 'Sauce Cup Lids (2oz)', unit: 'Sleeve' },
+    { name: 'Sauce Cups (4oz)', unit: 'Sleeve' },
+    { name: 'Sauce Cup Lids (4oz)', unit: 'Sleeve' },
+    { name: 'Aluminum Foil Pans (Half)', unit: 'Case' },
+    { name: 'Aluminum Foil Pans (Full)', unit: 'Case' },
+    { name: 'Foil Pan Lids', unit: 'Case' }
+  ]},
+  { category: 'Cleaning', icon: '&#129529;', items: [
+    { name: 'Sanitizer Solution', unit: 'Gallon' },
+    { name: 'Degreaser', unit: 'Gallon' },
+    { name: 'Glass Cleaner', unit: 'Bottle' },
+    { name: 'All-Purpose Cleaner', unit: 'Bottle' },
+    { name: 'Dish Soap', unit: 'Bottle' },
+    { name: 'Hand Soap (Refill)', unit: 'Gallon' },
+    { name: 'Trash Bags (Small)', unit: 'Roll' },
+    { name: 'Trash Bags (Large)', unit: 'Roll' },
+    { name: 'Scouring Pads', unit: 'Pack' },
+    { name: 'Steel Wool', unit: 'Pack' },
+    { name: 'Towel/Rag Roll', unit: 'Roll' }
+  ]},
+  { category: 'Gloves & Safety', icon: '&#129534;', items: [
+    { name: 'Gloves - Small', unit: 'Box' },
+    { name: 'Gloves - Medium', unit: 'Box' },
+    { name: 'Gloves - Large', unit: 'Box' },
+    { name: 'Gloves - X-Large', unit: 'Box' },
+    { name: 'First Aid Kit Refill', unit: 'Kit' },
+    { name: 'Band-Aids', unit: 'Box' },
+    { name: 'Burn Cream', unit: 'Tube' }
+  ]},
+  { category: 'Other Supplies', icon: '&#128196;', items: [
+    { name: 'Aluminum Foil Roll', unit: 'Roll' },
+    { name: 'Cling Wrap', unit: 'Roll' },
+    { name: 'Labels (Date/Rotation)', unit: 'Roll' },
+    { name: 'Markers (Sharpie)', unit: 'Pack' },
+    { name: 'Pens', unit: 'Pack' },
+    { name: 'Tape (Masking)', unit: 'Roll' },
+    { name: 'Tape (Packing)', unit: 'Roll' },
+    { name: 'Aprons (Disposable)', unit: 'Pack' },
+    { name: 'Hairnets', unit: 'Box' }
+  ]}
+];
+
+// ─── STATE ───
+let currentStore = null;
+let currentUser = '';
+let isAdmin = false;
+let catalog = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
+let orderQtys = {};   // { 'category|itemName': qty }
+let specialRequests = '';
+let allOrders = [];   // loaded from backend or localStorage
+
+// Config
+const ADMIN_PASS = 'angies2024';
+const ORDER_WINDOW_DAYS = [1, 2, 3]; // Mon=1, Tue=2, Wed=3
+const DAY_NAMES = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+// Apps Script URL (set this after deploying)
+let APPS_SCRIPT_URL = localStorage.getItem('angies_apps_script_url') || '';
+
+// ─── INIT ───
+function init() {
+  const sel = document.getElementById('loginStore');
+  STORES.sort((a, b) => a.num - b.num).forEach(s => {
+    const opt = document.createElement('option');
+    opt.value = s.key;
+    opt.textContent = `#${s.num} - ${s.name}`;
+    sel.appendChild(opt);
+  });
+
+  loadOrdersFromStorage();
+}
+
+// ─── LOGIN ───
+function loginAsStore() {
+  const storeKey = document.getElementById('loginStore').value;
+  const name = document.getElementById('loginName').value.trim();
+  if (!storeKey) { showToast('Please select a store'); return; }
+  if (!name) { showToast('Please enter your name'); return; }
+
+  currentStore = STORES.find(s => s.key === storeKey);
+  currentUser = name;
+  isAdmin = false;
+
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('storeApp').style.display = 'flex';
+  document.getElementById('storeBadge').textContent = `#${currentStore.num} ${currentStore.name}`;
+
+  renderWindowBanner();
+  renderCategoryBar();
+  renderOrderForm();
+  updateFooter();
+}
+
+function showAdminLogin() {
+  document.getElementById('adminLoginModal').classList.add('show');
+  document.getElementById('adminPass').focus();
+}
+
+function loginAsAdmin() {
+  const pass = document.getElementById('adminPass').value;
+  if (pass !== ADMIN_PASS) { showToast('Invalid password'); return; }
+
+  isAdmin = true;
+  closeModal('adminLoginModal');
+  document.getElementById('loginScreen').style.display = 'none';
+  document.getElementById('adminApp').style.display = 'flex';
+
+  loadOrdersFromStorage();
+  renderAdminOrders();
+}
+
+function logout() {
+  currentStore = null;
+  currentUser = '';
+  isAdmin = false;
+  orderQtys = {};
+  specialRequests = '';
+
+  document.getElementById('storeApp').style.display = 'none';
+  document.getElementById('adminApp').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('successScreen').style.display = 'none';
+  document.getElementById('orderContent').style.display = '';
+  document.getElementById('orderFooter').style.display = '';
+  document.getElementById('loginName').value = '';
+  document.getElementById('loginStore').value = '';
+  document.getElementById('adminPass').value = '';
+}
+
+// ─── ORDER WINDOW ───
+function isWindowOpen() {
+  return ORDER_WINDOW_DAYS.includes(new Date().getDay());
+}
+
+function renderWindowBanner() {
+  const banner = document.getElementById('windowBanner');
+  const windowDayNames = ORDER_WINDOW_DAYS.map(d => DAY_NAMES[d]);
+  if (isWindowOpen()) {
+    banner.className = 'window-banner window-open';
+    banner.innerHTML = `&#9989; Order window is <strong>OPEN</strong> &mdash; Orders accepted ${windowDayNames.join(', ')}`;
+  } else {
+    banner.className = 'window-banner window-closed';
+    banner.innerHTML = `&#9888;&#65039; Order window is <strong>CLOSED</strong> &mdash; Orders accepted ${windowDayNames.join(', ')} only. You can still prepare your order.`;
+  }
+}
+
+// ─── CATEGORY BAR ───
+function renderCategoryBar() {
+  const bar = document.getElementById('categoryBar');
+  bar.innerHTML = `<button class="category-tab active" onclick="scrollToCategory(null, this)">All Items</button>` +
+    catalog.map(cat =>
+      `<button class="category-tab" onclick="scrollToCategory('${cat.category}', this)">${cat.icon} ${cat.category}</button>`
+    ).join('');
+}
+
+function scrollToCategory(catName, el) {
+  document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+
+  if (!catName) {
+    document.getElementById('orderContent').scrollIntoView({ behavior: 'smooth' });
+    return;
+  }
+  const section = document.querySelector(`[data-category="${catName}"]`);
+  if (section) {
+    const topBar = document.querySelector('.top-bar').offsetHeight;
+    const catBar = document.querySelector('.category-bar').offsetHeight;
+    const y = section.getBoundingClientRect().top + window.scrollY - topBar - catBar - 16;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  }
+}
+
+// ─── ORDER FORM ───
+function renderOrderForm() {
+  const content = document.getElementById('orderContent');
+  let html = '';
+
+  catalog.forEach(cat => {
+    html += `<div class="category-section" data-category="${cat.category}">`;
+    html += `<div class="category-header"><span class="category-icon">${cat.icon}</span>${cat.category}</div>`;
+    html += `<div class="items-grid">`;
+
+    cat.items.forEach(item => {
+      const key = `${cat.category}|${item.name}`;
+      const qty = orderQtys[key] || 0;
+      html += `
+        <div class="item-card ${qty > 0 ? 'has-qty' : ''}" id="card-${cssId(key)}">
+          <div class="item-name">${item.name}</div>
+          <div class="item-unit">${item.unit}</div>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="changeQty('${escKey(key)}', -1)">&#8722;</button>
+            <input class="qty-input" type="number" min="0" value="${qty}"
+              onchange="setQty('${escKey(key)}', this.value)"
+              id="qty-${cssId(key)}">
+            <button class="qty-btn" onclick="changeQty('${escKey(key)}', 1)">&#43;</button>
+          </div>
+        </div>`;
+    });
+
+    html += `</div></div>`;
+  });
+
+  html += `
+    <div class="special-requests">
+      <h3>Special Requests</h3>
+      <p style="font-size:13px; color:var(--gray-500); margin-bottom:10px;">Need something not on the list? Describe it below.</p>
+      <textarea id="specialRequestsInput" placeholder="e.g., 2 cases of the new eco-friendly straws, extra large gloves for kitchen..."
+        oninput="specialRequests=this.value">${specialRequests}</textarea>
+    </div>`;
+
+  content.innerHTML = html;
+}
+
+function cssId(key) { return key.replace(/[^a-zA-Z0-9]/g, '_'); }
+function escKey(key) { return key.replace(/'/g, "\\'"); }
+
+function changeQty(key, delta) {
+  const current = orderQtys[key] || 0;
+  const newVal = Math.max(0, current + delta);
+  orderQtys[key] = newVal;
+
+  const input = document.getElementById(`qty-${cssId(key)}`);
+  if (input) input.value = newVal;
+
+  const card = document.getElementById(`card-${cssId(key)}`);
+  if (card) {
+    if (newVal > 0) card.classList.add('has-qty');
+    else card.classList.remove('has-qty');
+  }
+
+  updateFooter();
+}
+
+function setQty(key, val) {
+  const num = Math.max(0, parseInt(val) || 0);
+  orderQtys[key] = num;
+
+  const input = document.getElementById(`qty-${cssId(key)}`);
+  if (input) input.value = num;
+
+  const card = document.getElementById(`card-${cssId(key)}`);
+  if (card) {
+    if (num > 0) card.classList.add('has-qty');
+    else card.classList.remove('has-qty');
+  }
+
+  updateFooter();
+}
+
+function updateFooter() {
+  const count = Object.values(orderQtys).filter(q => q > 0).length;
+  document.getElementById('footerItemCount').textContent = count;
+  document.getElementById('cartCount').textContent = count;
+}
+
+function clearOrder() {
+  orderQtys = {};
+  specialRequests = '';
+  renderOrderForm();
+  updateFooter();
+  showToast('Order cleared');
+}
+
+// ─── REVIEW ───
+function openReview() {
+  const items = getOrderItems();
+  if (items.length === 0 && !specialRequests.trim()) {
+    showToast('Add items to your order first');
+    return;
+  }
+
+  let html = '';
+  const grouped = {};
+  items.forEach(it => {
+    if (!grouped[it.category]) grouped[it.category] = [];
+    grouped[it.category].push(it);
+  });
+
+  Object.entries(grouped).forEach(([cat, catItems]) => {
+    html += `<div class="review-category">`;
+    html += `<div class="review-category-name">${cat}</div>`;
+    catItems.forEach(it => {
+      html += `<div class="review-item">
+        <span class="review-item-name">${it.name}</span>
+        <span class="review-item-qty">${it.qty} ${it.unit}</span>
+      </div>`;
+    });
+    html += `</div>`;
+  });
+
+  if (specialRequests.trim()) {
+    html += `<div class="review-special">
+      <h4>Special Requests</h4>
+      <p>${specialRequests.trim().replace(/</g,'&lt;')}</p>
+    </div>`;
+  }
+
+  document.getElementById('reviewBody').innerHTML = html;
+
+  const submitBtn = document.getElementById('submitOrderBtn');
+  if (!isWindowOpen()) {
+    submitBtn.textContent = 'Submit (Window Closed - Will Queue)';
+  } else {
+    submitBtn.textContent = 'Submit Order';
+  }
+
+  document.getElementById('reviewModal').classList.add('show');
+}
+
+function getOrderItems() {
+  const items = [];
+  catalog.forEach(cat => {
+    cat.items.forEach(item => {
+      const key = `${cat.category}|${item.name}`;
+      const qty = orderQtys[key] || 0;
+      if (qty > 0) items.push({ category: cat.category, name: item.name, unit: item.unit, qty });
+    });
+  });
+  return items;
+}
+
+// ─── SUBMIT ───
+async function submitOrder() {
+  const items = getOrderItems();
+  if (items.length === 0 && !specialRequests.trim()) return;
+
+  const order = {
+    id: 'ORD-' + Date.now().toString(36).toUpperCase(),
+    store: currentStore.key,
+    storeName: currentStore.name,
+    storeNum: currentStore.num,
+    submittedBy: currentUser,
+    date: new Date().toISOString(),
+    status: 'Pending',
+    items: items,
+    specialRequests: specialRequests.trim(),
+    windowOpen: isWindowOpen()
+  };
+
+  document.getElementById('submitOrderBtn').disabled = true;
+  document.getElementById('submitOrderBtn').textContent = 'Submitting...';
+
+  // Try Apps Script backend first, fallback to localStorage
+  let submitted = false;
+  if (APPS_SCRIPT_URL) {
+    try {
+      const resp = await fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
+        body: JSON.stringify({ action: 'submitOrder', order })
+      });
+      submitted = true;
+    } catch (err) {
+      console.warn('Apps Script submit failed, saving locally:', err);
+    }
+  }
+
+  // Always save locally as backup
+  allOrders.unshift(order);
+  saveOrdersToStorage();
+
+  closeModal('reviewModal');
+  document.getElementById('submitOrderBtn').disabled = false;
+  document.getElementById('submitOrderBtn').textContent = 'Submit Order';
+
+  // Show success
+  document.getElementById('orderContent').style.display = 'none';
+  document.getElementById('orderFooter').style.display = 'none';
+  document.getElementById('successScreen').style.display = 'flex';
+  document.getElementById('successMsg').textContent =
+    `Order ${order.id} for ${currentStore.name} has been submitted${!submitted ? ' (saved locally)' : ''}.` +
+    (submitted ? ' Your operations team has been notified.' : ' Connect Google Sheets in Admin > Setup to sync.');
+
+  orderQtys = {};
+  specialRequests = '';
+}
+
+function startNewOrder() {
+  document.getElementById('successScreen').style.display = 'none';
+  document.getElementById('orderContent').style.display = '';
+  document.getElementById('orderFooter').style.display = '';
+  renderOrderForm();
+  updateFooter();
+  window.scrollTo(0, 0);
+}
+
+// ─── LOCAL STORAGE ───
+function saveOrdersToStorage() {
+  try { localStorage.setItem('angies_orders', JSON.stringify(allOrders)); } catch(e) {}
+}
+
+function loadOrdersFromStorage() {
+  try {
+    const d = localStorage.getItem('angies_orders');
+    if (d) allOrders = JSON.parse(d);
+  } catch(e) { allOrders = []; }
+}
+
+// ─── ADMIN DASHBOARD ───
+function switchAdminTab(tab, el) {
+  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+
+  if (tab === 'orders') renderAdminOrders();
+  else if (tab === 'summary') renderWeeklySummary();
+  else if (tab === 'catalog') renderCatalogManager();
+  else if (tab === 'setup') renderSetup();
+}
+
+function renderAdminOrders() {
+  const content = document.getElementById('adminContent');
+
+  let html = `
+    <div class="admin-filters">
+      <select id="filterStore" onchange="renderAdminOrders()">
+        <option value="">All Stores</option>
+        ${STORES.sort((a,b)=>a.num-b.num).map(s => `<option value="${s.key}">#${s.num} ${s.name}</option>`).join('')}
+      </select>
+      <select id="filterStatus" onchange="renderAdminOrders()">
+        <option value="">All Statuses</option>
+        <option value="Pending">Pending</option>
+        <option value="Fulfilled">Fulfilled</option>
+        <option value="Cancelled">Cancelled</option>
+      </select>
+      <input type="date" id="filterDate" onchange="renderAdminOrders()">
+      <button class="btn btn-secondary btn-sm" onclick="refreshOrders()">Refresh</button>
+    </div>`;
+
+  // Apply filters
+  const fStore = document.getElementById('filterStore')?.value || '';
+  const fStatus = document.getElementById('filterStatus')?.value || '';
+  const fDate = document.getElementById('filterDate')?.value || '';
+
+  let filtered = [...allOrders];
+  if (fStore) filtered = filtered.filter(o => o.store === fStore);
+  if (fStatus) filtered = filtered.filter(o => o.status === fStatus);
+  if (fDate) filtered = filtered.filter(o => o.date.startsWith(fDate));
+
+  if (filtered.length === 0) {
+    html += `<div class="empty-state">
+      <div class="empty-state-icon">&#128203;</div>
+      <h3>No Orders Found</h3>
+      <p>Orders will appear here once stores start submitting them.</p>
+    </div>`;
+  } else {
+    html += `<table class="orders-table">
+      <thead><tr>
+        <th>Order ID</th>
+        <th>Store</th>
+        <th>Submitted By</th>
+        <th>Date</th>
+        <th>Items</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr></thead><tbody>`;
+
+    filtered.forEach((order, idx) => {
+      const d = new Date(order.date);
+      const dateStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      const timeStr = d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+
+      html += `<tr onclick="toggleOrderDetail(${idx})" style="cursor:pointer">
+        <td><strong>${order.id}</strong></td>
+        <td>#${order.storeNum} ${order.storeName}</td>
+        <td>${order.submittedBy}</td>
+        <td>${dateStr}<br><span style="color:var(--gray-500);font-size:11px">${timeStr}</span></td>
+        <td>${order.items.length} items${order.specialRequests ? ' + notes' : ''}</td>
+        <td><span class="status-badge status-${order.status.toLowerCase()}">${order.status}</span></td>
+        <td>
+          <select onchange="updateOrderStatus(${idx}, this.value); event.stopPropagation();" style="padding:4px 8px;border:1px solid var(--gray-300);border-radius:4px;font-size:12px;">
+            <option value="Pending" ${order.status==='Pending'?'selected':''}>Pending</option>
+            <option value="Fulfilled" ${order.status==='Fulfilled'?'selected':''}>Fulfilled</option>
+            <option value="Cancelled" ${order.status==='Cancelled'?'selected':''}>Cancelled</option>
+          </select>
+        </td>
+      </tr>`;
+
+      // Detail row
+      html += `<tr class="order-detail-row" id="detail-${idx}">
+        <td colspan="7" class="order-detail-cell">
+          <div class="detail-grid">
+            ${order.items.map(it => `<div class="detail-item"><span class="detail-item-name">${it.name}</span><span class="detail-item-qty">${it.qty} ${it.unit}</span></div>`).join('')}
+          </div>
+          ${order.specialRequests ? `<div style="margin-top:12px;padding:10px;background:var(--yellow-bg);border-radius:4px;font-size:13px"><strong>Special Requests:</strong> ${order.specialRequests.replace(/</g,'&lt;')}</div>` : ''}
+        </td>
+      </tr>`;
+    });
+
+    html += `</tbody></table>`;
+  }
+
+  content.innerHTML = html;
+}
+
+function toggleOrderDetail(idx) {
+  const row = document.getElementById(`detail-${idx}`);
+  if (row) row.classList.toggle('show');
+}
+
+function updateOrderStatus(idx, status) {
+  allOrders[idx].status = status;
+  saveOrdersToStorage();
+  renderAdminOrders();
+  showToast(`Order ${allOrders[idx].id} marked as ${status}`);
+}
+
+async function refreshOrders() {
+  if (APPS_SCRIPT_URL) {
+    try {
+      const resp = await fetch(`${APPS_SCRIPT_URL}?action=getOrders`);
+      const data = await resp.json();
+      if (data.orders) {
+        allOrders = data.orders;
+        saveOrdersToStorage();
+        showToast('Orders refreshed from Google Sheets');
+      }
+    } catch(err) {
+      showToast('Could not refresh — using local data');
+    }
+  } else {
+    loadOrdersFromStorage();
+    showToast('Loaded local orders');
+  }
+  renderAdminOrders();
+}
+
+// ─── WEEKLY SUMMARY ───
+function renderWeeklySummary() {
+  const content = document.getElementById('adminContent');
+
+  // Get current week's orders
+  const now = new Date();
+  const startOfWeek = new Date(now);
+  startOfWeek.setDate(now.getDate() - now.getDay());
+  startOfWeek.setHours(0, 0, 0, 0);
+
+  const weekOrders = allOrders.filter(o => {
+    const d = new Date(o.date);
+    return d >= startOfWeek && o.status !== 'Cancelled';
+  });
+
+  // Aggregate quantities
+  const totals = {};
+  const byStore = {};
+
+  weekOrders.forEach(order => {
+    if (!byStore[order.storeName]) byStore[order.storeName] = {};
+    order.items.forEach(it => {
+      const key = `${it.category}|${it.name}`;
+      if (!totals[key]) totals[key] = { category: it.category, name: it.name, unit: it.unit, qty: 0 };
+      totals[key].qty += it.qty;
+      if (!byStore[order.storeName][key]) byStore[order.storeName][key] = 0;
+      byStore[order.storeName][key] += it.qty;
+    });
+  });
+
+  const storeNames = Object.keys(byStore).sort();
+
+  let html = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+      <div>
+        <h3 style="font-size:18px;color:var(--navy);">Weekly Summary</h3>
+        <p style="font-size:13px;color:var(--gray-500);">Week of ${startOfWeek.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })} &mdash; ${weekOrders.length} orders from ${storeNames.length} stores</p>
+      </div>
+      <button class="btn btn-secondary btn-sm" onclick="exportWeeklySummary()">Export CSV</button>
+    </div>`;
+
+  if (Object.keys(totals).length === 0) {
+    html += `<div class="empty-state">
+      <div class="empty-state-icon">&#128202;</div>
+      <h3>No Orders This Week</h3>
+      <p>Summary data will appear once orders are submitted.</p>
+    </div>`;
+  } else {
+    // Group by category
+    const byCategory = {};
+    Object.values(totals).forEach(t => {
+      if (!byCategory[t.category]) byCategory[t.category] = [];
+      byCategory[t.category].push(t);
+    });
+
+    html += `<div style="overflow-x:auto;">
+    <table class="summary-table">
+      <thead><tr>
+        <th>Item</th>
+        <th>Unit</th>
+        ${storeNames.map(s => `<th style="text-align:center;min-width:80px;">${s}</th>`).join('')}
+        <th style="text-align:center;min-width:80px;background:var(--red);">TOTAL</th>
+      </tr></thead><tbody>`;
+
+    Object.entries(byCategory).forEach(([cat, items]) => {
+      html += `<tr><td colspan="${storeNames.length + 3}" style="background:var(--gray-100);font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:0.5px;color:var(--navy);padding:8px 16px;">${cat}</td></tr>`;
+      items.sort((a,b) => a.name.localeCompare(b.name)).forEach(item => {
+        const key = `${item.category}|${item.name}`;
+        html += `<tr>
+          <td>${item.name}</td>
+          <td style="color:var(--gray-500)">${item.unit}</td>
+          ${storeNames.map(s => {
+            const val = byStore[s]?.[key] || 0;
+            return `<td style="text-align:center;">${val || '-'}</td>`;
+          }).join('')}
+          <td class="summary-total" style="text-align:center;">${item.qty}</td>
+        </tr>`;
+      });
+    });
+
+    html += `</tbody></table></div>`;
+  }
+
+  content.innerHTML = html;
+}
+
+function exportWeeklySummary() {
+  const now = new Date();
+  const startOfWeek = new Date(now);
+  startOfWeek.setDate(now.getDate() - now.getDay());
+  startOfWeek.setHours(0, 0, 0, 0);
+
+  const weekOrders = allOrders.filter(o => {
+    const d = new Date(o.date);
+    return d >= startOfWeek && o.status !== 'Cancelled';
+  });
+
+  const totals = {};
+  const byStore = {};
+
+  weekOrders.forEach(order => {
+    if (!byStore[order.storeName]) byStore[order.storeName] = {};
+    order.items.forEach(it => {
+      const key = `${it.category}|${it.name}`;
+      if (!totals[key]) totals[key] = { category: it.category, name: it.name, unit: it.unit, qty: 0 };
+      totals[key].qty += it.qty;
+      if (!byStore[order.storeName][key]) byStore[order.storeName][key] = 0;
+      byStore[order.storeName][key] += it.qty;
+    });
+  });
+
+  const storeNames = Object.keys(byStore).sort();
+
+  let csv = 'Category,Item,Unit,' + storeNames.join(',') + ',Total\n';
+  Object.values(totals).sort((a,b) => a.category.localeCompare(b.category) || a.name.localeCompare(b.name)).forEach(item => {
+    const key = `${item.category}|${item.name}`;
+    csv += `"${item.category}","${item.name}","${item.unit}",`;
+    csv += storeNames.map(s => byStore[s]?.[key] || 0).join(',');
+    csv += `,${item.qty}\n`;
+  });
+
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `angies-weekly-summary-${startOfWeek.toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast('CSV exported');
+}
+
+// ─── CATALOG MANAGER ───
+function renderCatalogManager() {
+  const content = document.getElementById('adminContent');
+  let html = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+      <div>
+        <h3 style="font-size:18px;color:var(--navy);">Manage Catalog</h3>
+        <p style="font-size:13px;color:var(--gray-500);">Add, edit, or remove items from the ordering catalog.</p>
+      </div>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-secondary btn-sm" onclick="resetCatalog()">Reset to Defaults</button>
+        <button class="btn btn-primary btn-sm" onclick="addItemPrompt()">+ Add Item</button>
+      </div>
+    </div>`;
+
+  catalog.forEach((cat, ci) => {
+    html += `<div style="margin-bottom:24px;">
+      <div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px;display:flex;align-items:center;gap:8px;">
+        <span>${cat.icon}</span> ${cat.category}
+        <span style="background:var(--gray-100);color:var(--gray-500);font-size:12px;padding:2px 8px;border-radius:10px;">${cat.items.length}</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;">`;
+
+    cat.items.forEach((item, ii) => {
+      html += `<span style="display:inline-flex;align-items:center;gap:6px;background:var(--white);border:1px solid var(--gray-200);padding:6px 12px;border-radius:16px;font-size:13px;">
+        ${item.name} <span style="color:var(--gray-400);font-size:11px;">(${item.unit})</span>
+        <button onclick="removeItem(${ci},${ii})" style="background:none;border:none;color:var(--gray-400);cursor:pointer;font-size:16px;padding:0 2px;" title="Remove">&times;</button>
+      </span>`;
+    });
+
+    html += `</div></div>`;
+  });
+
+  content.innerHTML = html;
+}
+
+function addItemPrompt() {
+  const cat = prompt('Category (e.g., "Cups & Lids"):');
+  if (!cat) return;
+  const name = prompt('Item name:');
+  if (!name) return;
+  const unit = prompt('Unit (e.g., Case, Box, Roll):') || 'Each';
+
+  let catObj = catalog.find(c => c.category.toLowerCase() === cat.toLowerCase());
+  if (!catObj) {
+    catObj = { category: cat, icon: '&#128230;', items: [] };
+    catalog.push(catObj);
+  }
+  catObj.items.push({ name, unit });
+  saveCatalog();
+  renderCatalogManager();
+  showToast(`Added "${name}" to ${catObj.category}`);
+}
+
+function removeItem(ci, ii) {
+  const item = catalog[ci].items[ii];
+  if (confirm(`Remove "${item.name}" from ${catalog[ci].category}?`)) {
+    catalog[ci].items.splice(ii, 1);
+    if (catalog[ci].items.length === 0) catalog.splice(ci, 1);
+    saveCatalog();
+    renderCatalogManager();
+    showToast('Item removed');
+  }
+}
+
+function resetCatalog() {
+  if (confirm('Reset catalog to defaults? This will remove any custom items.')) {
+    catalog = JSON.parse(JSON.stringify(DEFAULT_CATALOG));
+    saveCatalog();
+    renderCatalogManager();
+    showToast('Catalog reset to defaults');
+  }
+}
+
+function saveCatalog() {
+  try { localStorage.setItem('angies_catalog', JSON.stringify(catalog)); } catch(e) {}
+}
+
+function loadCatalog() {
+  try {
+    const d = localStorage.getItem('angies_catalog');
+    if (d) catalog = JSON.parse(d);
+  } catch(e) {}
+}
+
+// ─── SETUP PANEL ───
+function renderSetup() {
+  const content = document.getElementById('adminContent');
+  content.innerHTML = `
+    <div class="setup-panel">
+      <h3>Google Sheets Connection</h3>
+      <p>Connect this ordering system to Google Sheets so all orders are saved centrally and email notifications are sent automatically.</p>
+
+      <div class="config-field" style="margin-top:16px;">
+        <label>Apps Script Web App URL</label>
+        <input type="text" id="appsScriptUrlInput" value="${APPS_SCRIPT_URL}" placeholder="https://script.google.com/macros/s/...">
+        <button class="btn btn-primary btn-sm" style="margin-top:8px;width:auto;" onclick="saveAppsScriptUrl()">Save URL</button>
+        <p style="font-size:12px;color:var(--gray-500);margin-top:6px;">
+          ${APPS_SCRIPT_URL ? '<span style="color:var(--green);">Connected</span>' : '<span style="color:var(--yellow);">Not connected — orders save to browser only</span>'}
+        </p>
+      </div>
+
+      <h3>Setup Instructions</h3>
+      <ol>
+        <li>Create a new Google Sheet</li>
+        <li>Go to <strong>Extensions &gt; Apps Script</strong></li>
+        <li>Delete the default code and paste the Apps Script code below</li>
+        <li>Update the <code>NOTIFICATION_EMAILS</code> variable with your team's email addresses</li>
+        <li>Click <strong>Deploy &gt; New deployment</strong></li>
+        <li>Choose <strong>Web app</strong>, set access to <strong>"Anyone"</strong></li>
+        <li>Copy the deployment URL and paste it in the field above</li>
+      </ol>
+
+      <h3>Apps Script Code</h3>
+      <pre id="appsScriptCode">// ─── Angie's Small Wares Ordering Backend ───
+// Paste this into Google Apps Script (Extensions > Apps Script)
+
+const NOTIFICATION_EMAILS = ['ops@angies.com']; // Update with your emails
+const SHEET_NAME_ORDERS = 'Orders';
+const SHEET_NAME_CONFIG = 'Config';
+
+function doGet(e) {
+  const action = e.parameter.action;
+
+  if (action === 'getOrders') {
+    return getOrders();
+  }
+  if (action === 'getCatalog') {
+    return getCatalog();
+  }
+
+  return ContentService.createTextOutput(
+    JSON.stringify({ error: 'Unknown action' })
+  ).setMimeType(ContentService.MimeType.JSON);
+}
+
+function doPost(e) {
+  try {
+    const data = JSON.parse(e.postData.contents);
+
+    if (data.action === 'submitOrder') {
+      return submitOrder(data.order);
+    }
+    if (data.action === 'updateStatus') {
+      return updateOrderStatus(data.orderId, data.status);
+    }
+
+    return ContentService.createTextOutput(
+      JSON.stringify({ error: 'Unknown action' })
+    ).setMimeType(ContentService.MimeType.JSON);
+  } catch (err) {
+    return ContentService.createTextOutput(
+      JSON.stringify({ error: err.message })
+    ).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function submitOrder(order) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sheet = ss.getSheetByName(SHEET_NAME_ORDERS);
+
+  if (!sheet) {
+    sheet = ss.insertSheet(SHEET_NAME_ORDERS);
+    sheet.appendRow([
+      'Order ID', 'Store Key', 'Store Name', 'Store #',
+      'Submitted By', 'Date', 'Status', 'Items (JSON)',
+      'Special Requests', 'Item Count'
+    ]);
+    sheet.getRange(1, 1, 1, 10).setFontWeight('bold');
+  }
+
+  sheet.appendRow([
+    order.id,
+    order.store,
+    order.storeName,
+    order.storeNum,
+    order.submittedBy,
+    new Date(order.date),
+    order.status,
+    JSON.stringify(order.items),
+    order.specialRequests || '',
+    order.items.length
+  ]);
+
+  // Send email notification
+  sendOrderNotification(order);
+
+  return ContentService.createTextOutput(
+    JSON.stringify({ success: true, orderId: order.id })
+  ).setMimeType(ContentService.MimeType.JSON);
+}
+
+function sendOrderNotification(order) {
+  const itemList = order.items
+    .map(i =&gt; '  - ' + i.name + ': ' + i.qty + ' ' + i.unit)
+    .join('\\n');
+
+  const body = 'New small wares order submitted:\\n\\n' +
+    'Order ID: ' + order.id + '\\n' +
+    'Store: #' + order.storeNum + ' ' + order.storeName + '\\n' +
+    'Submitted by: ' + order.submittedBy + '\\n' +
+    'Date: ' + new Date(order.date).toLocaleString() + '\\n\\n' +
+    'Items:\\n' + itemList +
+    (order.specialRequests
+      ? '\\n\\nSpecial Requests:\\n  ' + order.specialRequests
+      : '') +
+    '\\n\\n---\\nAngie\\'s Small Wares Ordering System';
+
+  NOTIFICATION_EMAILS.forEach(email =&gt; {
+    try {
+      MailApp.sendEmail({
+        to: email,
+        subject: 'New Order: #' + order.storeNum +
+                 ' ' + order.storeName +
+                 ' (' + order.items.length + ' items)',
+        body: body
+      });
+    } catch(e) {
+      console.error('Email failed for ' + email + ': ' + e);
+    }
+  });
+}
+
+function getOrders() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName(SHEET_NAME_ORDERS);
+
+  if (!sheet || sheet.getLastRow() &lt; 2) {
+    return ContentService.createTextOutput(
+      JSON.stringify({ orders: [] })
+    ).setMimeType(ContentService.MimeType.JSON);
+  }
+
+  const data = sheet.getRange(
+    2, 1, sheet.getLastRow() - 1, 10
+  ).getValues();
+
+  const orders = data.map(row =&gt; ({
+    id: row[0],
+    store: row[1],
+    storeName: row[2],
+    storeNum: row[3],
+    submittedBy: row[4],
+    date: new Date(row[5]).toISOString(),
+    status: row[6],
+    items: JSON.parse(row[7] || '[]'),
+    specialRequests: row[8] || '',
+    itemCount: row[9]
+  })).reverse();
+
+  return ContentService.createTextOutput(
+    JSON.stringify({ orders })
+  ).setMimeType(ContentService.MimeType.JSON);
+}
+
+function updateOrderStatus(orderId, status) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName(SHEET_NAME_ORDERS);
+  if (!sheet) return;
+
+  const data = sheet.getRange(
+    2, 1, sheet.getLastRow() - 1, 1
+  ).getValues();
+
+  for (let i = 0; i &lt; data.length; i++) {
+    if (data[i][0] === orderId) {
+      sheet.getRange(i + 2, 7).setValue(status);
+      break;
+    }
+  }
+
+  return ContentService.createTextOutput(
+    JSON.stringify({ success: true })
+  ).setMimeType(ContentService.MimeType.JSON);
+}
+
+function getCatalog() {
+  // Returns default catalog — extend if you
+  // want to manage catalog from the Sheet
+  return ContentService.createTextOutput(
+    JSON.stringify({ catalog: 'default' })
+  ).setMimeType(ContentService.MimeType.JSON);
+}</pre>
+      <button class="btn btn-secondary btn-sm" onclick="copyAppsScript()" style="margin-top:8px;">Copy Code</button>
+
+      <h3>Order Window Settings</h3>
+      <p>Currently, orders are accepted on: <strong>${ORDER_WINDOW_DAYS.map(d => DAY_NAMES[d]).join(', ')}</strong></p>
+      <p style="font-size:13px;color:var(--gray-500);">To change the order window days, modify the <code>ORDER_WINDOW_DAYS</code> variable in the HTML file. Days are numbered 0 (Sunday) through 6 (Saturday).</p>
+
+      <h3>Admin Password</h3>
+      <p style="font-size:13px;color:var(--gray-500);">Current admin password: <code>${ADMIN_PASS}</code>. To change it, modify the <code>ADMIN_PASS</code> variable in the HTML file.</p>
+    </div>`;
+}
+
+function saveAppsScriptUrl() {
+  const url = document.getElementById('appsScriptUrlInput').value.trim();
+  APPS_SCRIPT_URL = url;
+  localStorage.setItem('angies_apps_script_url', url);
+  renderSetup();
+  showToast(url ? 'Apps Script URL saved' : 'URL cleared — using local storage only');
+}
+
+function copyAppsScript() {
+  const code = document.getElementById('appsScriptCode').textContent;
+  navigator.clipboard.writeText(code).then(() => {
+    showToast('Apps Script code copied to clipboard');
+  }).catch(() => {
+    showToast('Could not copy — please select and copy manually');
+  });
+}
+
+// ─── UTILITIES ───
+function closeModal(id) {
+  document.getElementById(id).classList.remove('show');
+}
+
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.innerHTML = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ─── BOOT ───
+loadCatalog();
+init();
+</script>
+</body>
+</html>
