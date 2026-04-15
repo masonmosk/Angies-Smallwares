@@ -1900,6 +1900,7 @@ function renderSetup() {
         <li>Click <strong>Deploy &gt; New deployment</strong></li>
         <li>Choose <strong>Web app</strong>, set access to <strong>"Anyone"</strong></li>
         <li>Copy the deployment URL and paste it in the field above</li>
+        <li>Set up the Thursday email: click the <strong>clock icon (Triggers)</strong> in the left sidebar, then <strong>+ Add Trigger</strong> &rarr; function: <code>sendWeeklyDigest</code>, event: <strong>Time-driven &gt; Week timer &gt; Every Thursday, 8am-9am</strong></li>
       </ol>
 
       <h3>Apps Script Code</h3>
@@ -1973,37 +1974,103 @@ function submitOrder(order) {
     order.items.length
   ]);
 
-  // Send email notification
-  sendOrderNotification(order);
-
   return ContentService.createTextOutput(
     JSON.stringify({ success: true, orderId: order.id })
   ).setMimeType(ContentService.MimeType.JSON);
 }
 
-function sendOrderNotification(order) {
-  const itemList = order.items
-    .map(i =&gt; '  - ' + i.name + ': ' + i.qty + ' ' + i.unit)
-    .join('\\n');
+// ─── WEEKLY EMAIL DIGEST (runs on Thursdays via trigger) ───
+// Set up a time-based trigger: Apps Script Editor &gt;
+// Triggers &gt; Add Trigger &gt; sendWeeklyDigest &gt;
+// Time-driven &gt; Week timer &gt; Every Thursday, 8am-9am
 
-  const body = 'New small wares order submitted:\\n\\n' +
-    'Order ID: ' + order.id + '\\n' +
-    'Store: #' + order.storeNum + ' ' + order.storeName + '\\n' +
-    'Submitted by: ' + order.submittedBy + '\\n' +
-    'Date: ' + new Date(order.date).toLocaleString() + '\\n\\n' +
-    'Items:\\n' + itemList +
-    (order.specialRequests
-      ? '\\n\\nSpecial Requests:\\n  ' + order.specialRequests
-      : '') +
-    '\\n\\n---\\nAngie\\'s Small Wares Ordering System';
+function sendWeeklyDigest() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName(SHEET_NAME_ORDERS);
+  if (!sheet || sheet.getLastRow() &lt; 2) return;
+
+  // Get this week's orders (Sunday through now)
+  const now = new Date();
+  const startOfWeek = new Date(now);
+  startOfWeek.setDate(now.getDate() - now.getDay());
+  startOfWeek.setHours(0, 0, 0, 0);
+
+  const data = sheet.getRange(
+    2, 1, sheet.getLastRow() - 1, 10
+  ).getValues();
+
+  // Filter to this week's pending orders
+  const weekOrders = data.filter(row =&gt; {
+    const d = new Date(row[5]);
+    return d &gt;= startOfWeek &amp;&amp; row[6] === 'Pending';
+  });
+
+  if (weekOrders.length === 0) return;
+
+  // Group orders by store
+  const byStore = {};
+  weekOrders.forEach(row =&gt; {
+    const storeKey = row[2] + ' (#' + row[3] + ')';
+    if (!byStore[storeKey]) byStore[storeKey] = {
+      orders: [], allItems: {}, specialReqs: []
+    };
+    byStore[storeKey].orders.push({
+      id: row[0], submittedBy: row[4],
+      date: new Date(row[5])
+    });
+    const items = JSON.parse(row[7] || '[]');
+    items.forEach(it =&gt; {
+      const key = it.name;
+      if (!byStore[storeKey].allItems[key]) {
+        byStore[storeKey].allItems[key] = {
+          name: it.name, unit: it.unit, qty: 0
+        };
+      }
+      byStore[storeKey].allItems[key].qty += it.qty;
+    });
+    if (row[8]) byStore[storeKey].specialReqs.push(
+      row[4] + ': ' + row[8]
+    );
+  });
+
+  // Build one email with all stores
+  let body = 'Weekly Small Wares Order Summary\\n';
+  body += 'Week of ' + startOfWeek.toLocaleDateString() + '\\n';
+  body += weekOrders.length + ' orders from ' +
+    Object.keys(byStore).length + ' stores\\n';
+  body += '='.repeat(50) + '\\n\\n';
+
+  Object.entries(byStore).forEach(([store, data]) =&gt; {
+    body += '\\n' + store + '\\n';
+    body += '-'.repeat(40) + '\\n';
+    body += 'Orders: ' + data.orders.map(
+      o =&gt; o.id + ' (' + o.submittedBy + ')'
+    ).join(', ') + '\\n\\n';
+    body += 'Combined Items:\\n';
+    Object.values(data.allItems)
+      .sort((a, b) =&gt; a.name.localeCompare(b.name))
+      .forEach(it =&gt; {
+        body += '  - ' + it.name + ': ' +
+          it.qty + ' ' + it.unit + '\\n';
+      });
+    if (data.specialReqs.length) {
+      body += '\\nSpecial Requests:\\n';
+      data.specialReqs.forEach(r =&gt; {
+        body += '  - ' + r + '\\n';
+      });
+    }
+    body += '\\n';
+  });
+
+  body += '\\n---\\nAngie\\'s Small Wares Ordering System';
 
   NOTIFICATION_EMAILS.forEach(email =&gt; {
     try {
       MailApp.sendEmail({
         to: email,
-        subject: 'New Order: #' + order.storeNum +
-                 ' ' + order.storeName +
-                 ' (' + order.items.length + ' items)',
+        subject: 'Weekly Small Wares Summary - ' +
+          Object.keys(byStore).length + ' stores, ' +
+          weekOrders.length + ' orders',
         body: body
       });
     } catch(e) {
