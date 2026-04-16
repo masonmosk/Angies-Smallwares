@@ -1082,94 +1082,210 @@ const STORES = [
   { key: 'PowerRay', name: 'Power & Ray', num: 11134 }
 ];
 
-// ─── CATALOG ───
+// ─── CATALOG (from Smallwares Codes Master) ───
 const DEFAULT_CATALOG = [
-  { category: 'Cups & Lids', icon: '&#9749;', items: [
-    { name: 'Small Hot Cups (8oz)', unit: 'Sleeve' },
-    { name: 'Medium Hot Cups (12oz)', unit: 'Sleeve' },
-    { name: 'Large Hot Cups (16oz)', unit: 'Sleeve' },
-    { name: 'Small Cold Cups (12oz)', unit: 'Sleeve' },
-    { name: 'Medium Cold Cups (16oz)', unit: 'Sleeve' },
-    { name: 'Large Cold Cups (24oz)', unit: 'Sleeve' },
-    { name: 'Small Hot Lids', unit: 'Sleeve' },
-    { name: 'Medium Hot Lids', unit: 'Sleeve' },
-    { name: 'Large Hot Lids', unit: 'Sleeve' },
-    { name: 'Cold Cup Lids (Flat)', unit: 'Sleeve' },
-    { name: 'Cold Cup Lids (Dome)', unit: 'Sleeve' },
-    { name: 'Soup Cups (12oz)', unit: 'Case' },
-    { name: 'Soup Cups (16oz)', unit: 'Case' },
-    { name: 'Soup Lids', unit: 'Case' }
+  { category: 'Office & Admin', icon: '&#128221;', items: [
+    { name: 'Battery AA (12ct)', unit: 'Each' },
+    { name: 'Battery AAA (5ct)', unit: 'Each' },
+    { name: 'BIC Pen Med Point (12ct)', unit: 'Pack' },
+    { name: 'EXPO Dry Erase Marker Ultra Fine Tip Assorted (12ct)', unit: 'Pack' },
+    { name: 'Sharpie Perm Marker Fine Point Black (12ct)', unit: 'Pack' },
+    { name: 'Scissors (2 pack)', unit: 'Pack' },
+    { name: 'Magnetic Pencil Holder (2ct)', unit: 'Each' },
+    { name: 'Velcro 30\'', unit: 'Each' },
+    { name: 'Paper, Legal Pad 5"x8" Small (12ct)', unit: 'Each' },
+    { name: 'DoorDash Sticker Rolls', unit: 'Roll' },
+    { name: 'Holder, Label 3" x 1.25"', unit: 'Each' },
+    { name: 'Printer Ink - Black and Color', unit: 'Each' },
+    { name: 'Sealer Big DoorDash Stickers', unit: 'Each' },
+    { name: 'Brother P-Touch Label Printer', unit: 'Each' },
+    { name: 'Label Tape (3 pack)', unit: 'Pack' },
+    { name: 'Labor Poster', unit: 'Each' }
   ]},
-  { category: 'Utensils', icon: '&#127860;', items: [
-    { name: 'Forks', unit: 'Box' },
-    { name: 'Knives', unit: 'Box' },
-    { name: 'Spoons', unit: 'Box' },
-    { name: 'Soup Spoons', unit: 'Box' },
-    { name: 'Stirrers', unit: 'Box' },
-    { name: 'Straws', unit: 'Box' },
-    { name: 'Straw (Boba/Smoothie)', unit: 'Box' }
+  { category: 'Thermometers & Timers', icon: '&#9201;', items: [
+    { name: 'Thermometer, Digital Probe', unit: 'Each' },
+    { name: 'Thermometer, Tube Refrig/Freezer', unit: 'Each' },
+    { name: 'Timer, Kitchen 12 Channel', unit: 'Each' },
+    { name: 'SS Timer, Kitchen Small', unit: 'Each' }
   ]},
-  { category: 'Paper & Napkins', icon: '&#129531;', items: [
-    { name: 'Napkins (Dispenser)', unit: 'Case' },
-    { name: 'Napkins (Wrapped)', unit: 'Case' },
-    { name: 'Paper Towels', unit: 'Case' },
-    { name: 'Toilet Paper', unit: 'Case' },
-    { name: 'Receipt Paper (3-1/8")', unit: 'Case' },
-    { name: 'Parchment Paper Sheets', unit: 'Case' },
-    { name: 'Wax Paper Sheets', unit: 'Case' }
+  { category: 'Storage & Furniture', icon: '&#128230;', items: [
+    { name: 'Dunnage Rack', unit: 'Each' },
+    { name: 'Tool Kit', unit: 'Each' },
+    { name: 'Tote, 27 Gallon Storage', unit: 'Each' },
+    { name: 'Chair, Folding Chairs', unit: 'Each' },
+    { name: 'Coat Rack', unit: 'Each' },
+    { name: 'Mop/Broom Hanger', unit: 'Each' },
+    { name: 'Cup Holder Hook', unit: 'Each' },
+    { name: 'Spray Bottle Holder', unit: 'Each' },
+    { name: 'Doorbell', unit: 'Each' },
+    { name: 'Ladder 3-Step', unit: 'Each' },
+    { name: 'Cart, Rolling Heavy Duty', unit: 'Each' },
+    { name: 'TM Drink Cart', unit: 'Each' },
+    { name: 'Rack, Rolling Speed', unit: 'Each' }
   ]},
-  { category: 'Bags', icon: '&#128092;', items: [
-    { name: 'Small Paper Bags', unit: 'Bundle' },
-    { name: 'Medium Paper Bags', unit: 'Bundle' },
-    { name: 'Large Paper Bags', unit: 'Bundle' },
-    { name: 'Catering Bags', unit: 'Bundle' },
-    { name: 'Plastic Bags (Small)', unit: 'Bundle' },
-    { name: 'Plastic Bags (Large)', unit: 'Bundle' }
+  { category: 'Dispensers & Holders', icon: '&#129529;', items: [
+    { name: 'Dispenser, Cup SS San Jamar 12/24oz', unit: 'Each' },
+    { name: 'Dispenser, Hair Net', unit: 'Each' },
+    { name: 'Dispenser, Rack 3 Box Glove', unit: 'Each' },
+    { name: 'Dispenser, AccuSalt w/Red Insert', unit: 'Each' },
+    { name: 'Holder, Knife 13" Magnetic Strip', unit: 'Each' },
+    { name: 'Holder, Lid SS Vollrath 3-Slot', unit: 'Each' },
+    { name: 'Holder, Utensil Holder', unit: 'Each' },
+    { name: 'Napkin Dispenser (1ct)', unit: 'Each' },
+    { name: 'Board, 24"x18"x1/2" White Poly Cutting', unit: 'Each' },
+    { name: 'Board, Wire Cutting Storage Rack with Hooks', unit: 'Each' },
+    { name: 'Bucket, Ice', unit: 'Each' }
   ]},
-  { category: 'Containers', icon: '&#128230;', items: [
-    { name: 'Small To-Go Containers', unit: 'Case' },
-    { name: 'Medium To-Go Containers', unit: 'Case' },
-    { name: 'Large To-Go Containers', unit: 'Case' },
-    { name: 'Sauce Cups (2oz)', unit: 'Sleeve' },
-    { name: 'Sauce Cup Lids (2oz)', unit: 'Sleeve' },
-    { name: 'Sauce Cups (4oz)', unit: 'Sleeve' },
-    { name: 'Sauce Cup Lids (4oz)', unit: 'Sleeve' },
-    { name: 'Aluminum Foil Pans (Half)', unit: 'Case' },
-    { name: 'Aluminum Foil Pans (Full)', unit: 'Case' },
-    { name: 'Foil Pan Lids', unit: 'Case' }
+  { category: 'First Aid', icon: '&#129657;', items: [
+    { name: 'SS, First Aid, Fabric Band-Aid', unit: 'Pack' },
+    { name: 'SS, First Aid, Burn Cream', unit: 'Pack' },
+    { name: 'SS, First Aid, Antibiotic Ointment', unit: 'Pack' },
+    { name: 'SS, First Aid, Fabric Bandage Blue Metal Detectable', unit: 'Pack' },
+    { name: 'SS, First Aid, Fabric Bandage Knuckle', unit: 'Pack' },
+    { name: 'SS, First Aid Tape', unit: 'Pack' },
+    { name: 'SS, First Aid, Patch Bandage', unit: 'Pack' },
+    { name: 'SS, First Aid, Butterfly Wound Closure', unit: 'Pack' },
+    { name: 'SS, First Aid Bandage (Fingertip)', unit: 'Pack' },
+    { name: 'SS, First Aid, Alcohol Pad', unit: 'Pack' },
+    { name: 'SS, First Aid, BZK Antiseptic Towelette', unit: 'Pack' },
+    { name: 'SS, First Aid, Gauze Roll 2"', unit: 'Pack' },
+    { name: 'SS, First Aid, Gauze Roll 3"', unit: 'Pack' },
+    { name: 'SS, First Aid, Non-Aspirin', unit: 'Pack' }
   ]},
-  { category: 'Cleaning', icon: '&#129529;', items: [
-    { name: 'Sanitizer Solution', unit: 'Gallon' },
-    { name: 'Degreaser', unit: 'Gallon' },
-    { name: 'Glass Cleaner', unit: 'Bottle' },
-    { name: 'All-Purpose Cleaner', unit: 'Bottle' },
-    { name: 'Dish Soap', unit: 'Bottle' },
-    { name: 'Hand Soap (Refill)', unit: 'Gallon' },
-    { name: 'Trash Bags (Small)', unit: 'Roll' },
-    { name: 'Trash Bags (Large)', unit: 'Roll' },
-    { name: 'Scouring Pads', unit: 'Pack' },
-    { name: 'Steel Wool', unit: 'Pack' },
-    { name: 'Towel/Rag Roll', unit: 'Roll' }
+  { category: 'Cutters & Openers', icon: '&#9986;', items: [
+    { name: 'Can, Opener #10 HD Manual With SS base', unit: 'Each' },
+    { name: 'Cutter, Bag Opener Black (LARGE/MAGNETIC)', unit: 'Each' },
+    { name: 'Cutter, Bag Opener Red (LARGE/MAGNETIC)', unit: 'Each' },
+    { name: 'Box Cutter', unit: 'Each' },
+    { name: 'Scraper, Blade 6"', unit: 'Each' },
+    { name: 'Scraper, SS 4"', unit: 'Each' },
+    { name: 'Clamp, Spring (drink bag station)', unit: 'Each' }
   ]},
-  { category: 'Gloves & Safety', icon: '&#129534;', items: [
-    { name: 'Gloves - Small', unit: 'Box' },
-    { name: 'Gloves - Medium', unit: 'Box' },
-    { name: 'Gloves - Large', unit: 'Box' },
-    { name: 'Gloves - X-Large', unit: 'Box' },
-    { name: 'First Aid Kit Refill', unit: 'Kit' },
-    { name: 'Band-Aids', unit: 'Box' },
-    { name: 'Burn Cream', unit: 'Tube' }
+  { category: 'Dishers (Portion)', icon: '&#127853;', items: [
+    { name: 'Disher, #4 Orange 8oz Vollrath 47388', unit: 'Each' },
+    { name: 'Disher, #6 White 5.33oz Winco ICOP-6', unit: 'Each' },
+    { name: 'Disher, #8 Gray 4oz Vollrath 47140', unit: 'Each' },
+    { name: 'Disher, #12 Green 2.66oz Vollrath 47142', unit: 'Each' },
+    { name: 'Disher, #20 Yellow 1.63oz Vollrath 47144', unit: 'Each' },
+    { name: 'Disher, #30 Black 1oz Vollrath 47146', unit: 'Each' }
   ]},
-  { category: 'Other Supplies', icon: '&#128196;', items: [
-    { name: 'Aluminum Foil Roll', unit: 'Roll' },
-    { name: 'Cling Wrap', unit: 'Roll' },
-    { name: 'Labels (Date/Rotation)', unit: 'Roll' },
-    { name: 'Markers (Sharpie)', unit: 'Pack' },
-    { name: 'Pens', unit: 'Pack' },
-    { name: 'Tape (Masking)', unit: 'Roll' },
-    { name: 'Tape (Packing)', unit: 'Roll' },
-    { name: 'Aprons (Disposable)', unit: 'Pack' },
-    { name: 'Hairnets', unit: 'Box' }
+  { category: 'Spoons, Tongs & Turners', icon: '&#127860;', items: [
+    { name: 'Spoon, 11" Red 1.5oz Perforated Buffet', unit: 'Each' },
+    { name: 'Spoon, 11" Black Handle SS 1.5oz Perforated Buffet', unit: 'Each' },
+    { name: 'Spoon, 7 5/8" SS Tablespoon', unit: 'Each' },
+    { name: 'Spoon, Measure Miser 2oz Perforated Beige/Red Carlisle', unit: 'Each' },
+    { name: 'Spoon, Measure Miser 2oz Solid Beige/Red Carlisle 436206', unit: 'Each' },
+    { name: 'Tongs, 12" HD SS', unit: 'Each' },
+    { name: 'Tongs, Scalloped 12" Red 4781240', unit: 'Each' },
+    { name: 'Tongs, Scalloped 12" Tan 4781260', unit: 'Each' },
+    { name: 'Turner, 8"x3"', unit: 'Each' },
+    { name: 'Turner, Square Edge 6"x3"', unit: 'Each' },
+    { name: 'SS, Spatula, 10"', unit: 'Each' },
+    { name: 'SS, Masher, Potato', unit: 'Each' },
+    { name: 'SS, Whisk, 12"', unit: 'Each' },
+    { name: 'Brush Pastry 2"', unit: 'Each' },
+    { name: 'Cheese Grater', unit: 'Each' },
+    { name: 'Potato Shovel', unit: 'Each' }
+  ]},
+  { category: 'Scoops', icon: '&#129368;', items: [
+    { name: 'Scoop, Ice Large for the bins', unit: 'Each' },
+    { name: 'Scoop, Big Plastic (Rice)', unit: 'Each' },
+    { name: 'Scoop, Small Plastic (Prep)', unit: 'Each' },
+    { name: 'Scoop, Fry Bagger Vollrath', unit: 'Each' },
+    { name: 'Breading Sifter', unit: 'Each' }
+  ]},
+  { category: 'Pans & Sheet Trays', icon: '&#127859;', items: [
+    { name: 'Pan, Full Size Sheet 18" x 26"', unit: 'Each' },
+    { name: 'Pan, Alum 1/8 Sheet 9" x 13"', unit: 'Each' },
+    { name: 'Pan 9.5x13 Black Tray', unit: 'Each' },
+    { name: 'Pan, Pie 10" x 1 1/4" 21 Gauge Aluminum', unit: 'Each' },
+    { name: 'SS, Pan, Meatloaf Pan', unit: 'Each' },
+    { name: 'Pan, SS Full, 4" Deep', unit: 'Each' },
+    { name: 'Pan, SS Half Long, 6" Deep', unit: 'Each' },
+    { name: 'Pan, SS Half, 4" Deep', unit: 'Each' },
+    { name: 'Pan, Half SS 6"', unit: 'Each' },
+    { name: 'Pan, SS Ninth, 4" Deep', unit: 'Each' },
+    { name: 'Pan, SS Quarter, 2.5" Deep', unit: 'Each' },
+    { name: 'Pan, SS Quarter, 4" Deep', unit: 'Each' },
+    { name: 'SS, Pan, SS Quarter 6" Deep', unit: 'Each' },
+    { name: 'Pan, SS Sixth, 6" Deep', unit: 'Each' },
+    { name: 'Pan, Poly Full, 6" Deep', unit: 'Each' },
+    { name: 'Pan, Poly Half, 6" Deep', unit: 'Each' },
+    { name: 'Pan, Poly Quarter, 4" Deep', unit: 'Each' },
+    { name: 'Pan, Poly Quarter, 6" Deep', unit: 'Each' },
+    { name: 'Pan, Poly Sixth, 6" Deep', unit: 'Each' },
+    { name: 'Pan, Poly Eight, 6" Deep', unit: 'Each' },
+    { name: 'Container, Poly box Clear 24"x18"x15" (Romaine Bin)', unit: 'Each' },
+    { name: 'SS, Tray, SS Quarter Drain', unit: 'Each' },
+    { name: 'SS, Tray, SS Sixth Drain', unit: 'Each' },
+    { name: 'Rack, Dish Full Size All Purpose', unit: 'Each' }
+  ]},
+  { category: 'Lids', icon: '&#11093;', items: [
+    { name: 'Lid, Poly Full', unit: 'Each' },
+    { name: 'Lid, Poly Half', unit: 'Each' },
+    { name: 'Lid, Poly Quarter', unit: 'Each' },
+    { name: 'Lid, Poly Sixth', unit: 'Each' },
+    { name: 'Lid, Poly 1/8 Clear with Handle', unit: 'Each' },
+    { name: 'Lid, Poly Romaine Bin', unit: 'Each' },
+    { name: 'Lid, SS Half Long', unit: 'Each' },
+    { name: 'Lid, SS Quarter', unit: 'Each' },
+    { name: 'Lid, SS Sixth', unit: 'Each' }
+  ]},
+  { category: 'Measuring & Pouring', icon: '&#9878;', items: [
+    { name: 'Measuring Cups 4QT Clear Plastic with Graduations', unit: 'Each' },
+    { name: 'Pitcher, 32oz Clear', unit: 'Each' },
+    { name: 'Funnel, 12oz White Plastic', unit: 'Each' },
+    { name: 'Carafes (2ct)', unit: 'Pack' },
+    { name: 'Expert Grill Spray Bottle', unit: 'Each' },
+    { name: 'Chem Spray Bottle', unit: 'Each' },
+    { name: 'Shaker, 10oz Poly with Beige Lid', unit: 'Each' },
+    { name: 'Shaker, 10oz Poly with Rose Lid Med Ground', unit: 'Each' },
+    { name: 'Choice, Red Lid for 10oz Polycarbonate Shaker', unit: 'Each' },
+    { name: 'Choice, Beige Lid for 10oz Polycarbonate Shaker', unit: 'Each' },
+    { name: 'Pump, Torani Syrup (GOLD)', unit: 'Each' }
+  ]},
+  { category: 'Kitchen Equipment', icon: '&#128208;', items: [
+    { name: 'Scale Small Food/Kitchen', unit: 'Each' },
+    { name: 'Scale, TE66OS 66LB Digital Portion Control', unit: 'Each' },
+    { name: 'SS, Sharpener, Knife Electric', unit: 'Each' },
+    { name: 'Choice Food Prep, 1/4" Tomato Slicer', unit: 'Each' },
+    { name: 'Bag Sealer', unit: 'Each' },
+    { name: 'Heating Cabinet', unit: 'Each' },
+    { name: 'Cooker Rice', unit: 'Each' },
+    { name: 'Egg Slicer With Stainless Steel Wires', unit: 'Each' },
+    { name: 'Choice 16 Qt. Heavy-Duty Aluminum Colander with Base', unit: 'Each' }
+  ]},
+  { category: 'Sani Strips & Test', icon: '&#129514;', items: [
+    { name: 'QT-40 Sani Strips', unit: 'Each' },
+    { name: 'Chlorine Ultra-San Strips', unit: 'Each' }
+  ]},
+  { category: 'Cleaning Tools', icon: '&#129532;', items: [
+    { name: 'Handle, 59" (Red Poles)', unit: 'Each' },
+    { name: 'Squeegee Head 24"', unit: 'Each' },
+    { name: 'Brush, Small Nylon (drink station)', unit: 'Each' },
+    { name: 'Bucket, 3qt Sanitizing Kleen-Pail', unit: 'Each' },
+    { name: 'Scrub, Pad Grill Cleaning (10ct)', unit: 'Pack' },
+    { name: 'SS, Tool, Grill Pad Holder Blue', unit: 'Each' },
+    { name: 'Grill Scraper with Blade', unit: 'Each' },
+    { name: 'Retainer Bar, Sheet Release', unit: 'Each' },
+    { name: 'Release Clip with Tab, Teflon Sheets, Grill', unit: 'Each' },
+    { name: 'Broom', unit: 'Each' },
+    { name: 'Dustpan', unit: 'Each' },
+    { name: 'Toilet, Brush/Plunger/Holder', unit: 'Each' }
+  ]},
+  { category: 'Trash & Mop', icon: '&#128465;', items: [
+    { name: 'Can, Trash 13 Gallon', unit: 'Each' },
+    { name: 'Can, Trash 23 Gallon Slim', unit: 'Each' },
+    { name: 'Can, Trash 44 Gallon Round', unit: 'Each' },
+    { name: 'Dolly, Trash Can', unit: 'Each' },
+    { name: 'Mop Bucket 36qt', unit: 'Each' }
+  ]},
+  { category: 'Safety Gear', icon: '&#129534;', items: [
+    { name: 'Cut Glove (4ct)', unit: 'Pack' },
+    { name: 'Glove, Black 17" Heat Resistant Neoprene', unit: 'Pair' }
+  ]},
+  { category: 'Disposables', icon: '&#127869;', items: [
+    { name: 'Deli Cups', unit: 'Sleeve' }
   ]}
 ];
 
